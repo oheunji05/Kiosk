@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <table boarder="1">
+        <th>이름</th>
+        <th>이미지</th>
+        <th>가격</th>
+        <th>수정</th>
+        <th>삭제</th>
+    <% 
+        for (var i = 0; i < rows.length; i++) {
+    %>
+                <tr>
+                    <td name="itemName"><%= rows[i].itemName %></td>
+                    <td name="image" value="../images/<%= rows[i].image %>"><img src="../images/<%= rows[i].image %>" style="width: 100px; height:100px;"></td>
+                    <td name="price" value="<%= rows[i].price %>"><%= rows[i].price %></td>
+                    <td>
+                        <br>
+                            <form action="/edititem" method="post">
+                                <input type="hidden" name="itemName" value="<%= rows[i].itemName %>">
+                                <input type="hidden" name="image" value="../images/<%= rows[i].image %>"/>
+                                <input type="hidden" name="price" value="<%= rows[i].price %>"/>
+                                <input type="submit" value="수정" />
+                            </form>
+                        </br>
+                    </td>
+                    <td>
+                        <br>
+                            <form action="/edititem/deleteitem" method="post">
+                                <input type="hidden" name="itemName" value="<%= rows[i].itemName %>">
+                                <input type="submit" value="삭제" />
+                            </form>
+                        </br>
+                    </td>
+                </tr>
+
+    <%
+        }
+    %>
+    </table>
+</body>
+</html>

@@ -1,0 +1,176 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  position: relative;
+  background-color: #FFFCF5;
+}
+
+.bg{
+  background-color: #FFFCF5;
+}
+
+a {
+  color: #00B7FF;
+}
+
+/* @font-face {
+  font-family: "Jua-Regular";         
+  src: url("./font/Jua-Regular.ttf"); 
+} */
+
+
+/* 첫 화면 */
+.fillbox{
+  width: 900px;
+  height: 600px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  position: absolute;
+  left: 27%;
+  margin-top: 150px;
+  /* box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1); */
+}
+
+.subbox{
+  background-color: #C5AF86;
+  width: 40%;
+  height: 80%;
+  border-radius: 15px;
+  margin: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagefont{
+  font-size: 22px;
+  margin-bottom: 100px;
+  /* font-family: 'Jua-Regular'; */
+}
+
+.pagebutton{
+  border: 0;
+  outline: 0;
+  width: 120pt;
+  height: 55pt;
+  border-radius: 15px;
+  font-weight: bold;
+  background-color: #FFFCF5;
+  font-size: 15px;
+  margin-top: -20px;
+}
+
+.pagebutton:hover{
+  background-color: #7E6F55
+}
+
+
+/* 관리자 로그인 */
+.loginBox{
+  background-color: #C5AF86;
+  width: 600px;
+  height: 400px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 35%;
+  top: 240px;
+}
+
+.display{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logintext{
+  font-size: 25px;
+  margin-bottom: 60px;
+  margin-top: -20px;
+}
+
+.inputlogin{
+  width: 250px;
+  height: 30px;
+  margin-bottom: 10px;
+  border: 0;
+  outline: 0;
+  border-radius: 15px;
+  padding-left:10px;
+}
+
+.buttonlogin{
+  width: 200pt;
+  height: 25pt;
+  border: 0;
+  outline: 0;
+  border-radius: 15px;
+  margin-top: 15px;
+  background-color: #FFFCF5
+}
+
+.buttonlogin:hover{
+  background-color: #7E6F55
+}
+
+
+/* 관리자 상품 등록 */
+.iteminsertbox{
+  background-color: #C5AF86;
+  width: 600px;
+  height: 400px;
+  border-radius: 15px;
+  margin-left: 670px;
+  margin-top: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.iteminsertinput{
+  width: 250px;
+  height: 25px;
+  border: 0;
+  outline: 0;
+  border-radius: 15px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.iteminsertbutton{
+  width: 197pt;
+  height: 22pt;
+  border: 0;
+  outline: 0;
+  border-radius: 15px;
+}
+
+.iteminsertbutton:hover{
+  background-color: #7E6F55
+}
+
+.file{
+  margin-left: 20px;
+}
+
+/* 관리자 페이지 */
+.li{
+  width: 150px;
+  height: 100px;
+  background-color: white;
+  margin: 20px;
+  box-shadow: 4px 4px 15px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+}

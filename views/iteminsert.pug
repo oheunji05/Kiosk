@@ -1,0 +1,13 @@
+extends layout 
+
+block content 
+    div(class="iteminsertbox")
+        h1 상품 등록
+        form(action='/registration/iteminsert' enctype='multipart/form-data' method='post')
+            input(type='text' name='itemName' placeholder='상품명' class="iteminsertinput")
+            br
+            input(type='file' name='image' class="file")
+            br
+            input(type='text' name='price' placeholder='가격 (숫자만 입력해 주세요)' class="iteminsertinput")
+            br
+            input(type='submit' value='등록' class="iteminsertbutton")

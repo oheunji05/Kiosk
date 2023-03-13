@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  div(class="loginBox")
+    h1(class="logintext") 관리자 로그인
+    form(action='/auth/signin' method='post' class="display")
+      input(type='text' name='userId' placeholder='아이디' class="inputlogin")
+      input(type='password' name='password' placeholder='비밀번호' class="inputlogin")
+      input(type='submit' value='확인' class="buttonlogin")

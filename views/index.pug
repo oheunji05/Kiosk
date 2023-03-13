@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  //- h1= title
+  //- p Welcome to #{title}
+  //- if userId
+  //-   p= userId
+  //-   a(href='/auth/signout') 로그아웃
+  //- else 
+  //-   //- a(href='/auth/signup') 회원가입
+  //-   a(href='/auth/signin') 로그인
+  div(class="fillbox")
+    div(class="subbox")
+      h2(class="pagefont") 관리자 페이지
+      a(href='/auth/signin'): button(class="pagebutton") 이곳을<br/>클릭해 주세요
+    div(class="subbox")
+      h2(class="pagefont") 사용자 페이지
+      a(href='/kiosk'): button(class="pagebutton") 주문을 하려면 <br/>이곳을<br/>클릭해 주세요

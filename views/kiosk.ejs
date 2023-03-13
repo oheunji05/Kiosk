@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>kiosk</title>
+    <style>
+        .sidebar1 {
+            float: right;
+            height: 100vh;
+            width: 25%;
+            margin-top: -9px;
+            margin-right: -10px;
+            background-color: #C5AF86;
+            padding-top: 10px;
+            position: fixed;
+            right: 0%;
+        }
+        .centerbar {
+            text-align: center;
+        }
+        .bg{
+            /* background-color: #FFFCF5; */
+            height: 100vh;
+            width: 80vw;
+            margin-top: -9px;
+            margin-left: -10px;
+        }
+        .list{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 500px;
+            height: 360px;
+            background-color: white;
+            margin: 30px;
+            box-shadow: 6px 6px 17px 6px rgba(73, 45, 2, 0.1);
+            border-radius: 20px;
+        }
+        .btn{
+            width: 150pt;
+            height: 35pt;
+            border: 0;
+            outline: 0;
+            background-color: #C5AF86;
+            border-radius: 25px;
+            font-size: 20px;
+        }
+        .btn:hover{
+            background-color: #7E6F55
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var countArr = [];
+        var priceArr = [];
+        var sumPrice = 0;
+
+        function addItemList(ItemName, ItemPrice){
+            const table = document.getElementById('itemList');
+            const tablerows = table.rows;
+
+            for(var i = 0; i < tablerows.length; i++){
+                if(tablerows[i].cells[0].innerText == ItemName){
+                    addOneItem(i);
+                    return;
+                }
+            }
+
+            const newRow = table.insertRow();
+
+            countArr[newRow.rowIndex] = 1;
+            priceArr[newRow.rowIndex] = parseInt(ItemPrice, 10);
+
+            sumPrice += priceArr[newRow.rowIndex];
+
+            const buyingItemName = newRow.insertCell(0);
+            const buyingItemPrice = newRow.insertCell(1);
+            const buyingItemCount = newRow.insertCell(2);
+            const buyingItemButton = newRow.insertCell(3);
+
+            buyingItemName.innerText = ItemName;
+            buyingItemPrice.innerText = ItemPrice;
+            buyingItemCount.innerText = countArr[newRow.rowIndex];
+            buyingItemButton.innerHTML = "<button onclick=\"addOneItem(" + newRow.rowIndex.toString() + ")\">+</button>" +
+                                         "<button onclick=\"deleteOneItem(" + newRow.rowIndex.toString() + ")\">-</button>" + 
+                                         "<button onclick=\"deleteAllItem(" + newRow.rowIndex.toString() + ")\">전체 삭제</button>";
+            
+            updateSumPrice();
+        }
+
+        
+
+        function addOneItem(index){
+            const table = document.getElementById('itemList');
+            const tablerows = table.rows;
+
+            countArr[index]++;
+            tablerows[index].cells[2].innerText = countArr[index];
+            sumPrice += priceArr[index];
+            updateSumPrice();
+        }
+
+        function deleteOneItem(index){
+            const table = document.getElementById('itemList');
+            const tablerows = table.rows;
+
+            countArr[index]--;
+            tablerows[index].cells[2].innerText = countArr[index];
+            sumPrice -= priceArr[index];
+            updateSumPrice();
+        }
+
+        function deleteAllItem(index){
+            const table = document.getElementById('itemList');
+            const tablerows = table.rows;
+
+            sumPrice -= priceArr[index] * countArr[index];
+
+            for(var i = index; i < tablerows.length; i++){
+                if(i + 1 < tablerows.length){
+                    tablerows[i] = tablerows[i+1];
+                }
+            }
+            table.deleteRow(-1);
+            updateSumPrice();
+        }
+
+        function updateSumPrice(){
+            const table = document.getElementById('payList');
+            const tablerows = table.rows;
+
+            tablerows[1].cells[0].innerText = sumPrice;
+        }
+
+        function doPay(){
+
+            const table = document.getElementById('itemList');
+            const tablerows = table.rows;
+
+            var shopping_list = '';
+
+            for(var i = 1; i < tablerows.length; i++){
+                if(i <  tablerows.length - 1){
+                    shopping_list += tablerows[i].cells[0].innerText + ',';
+                }
+                else{
+                    shopping_list += tablerows[i].cells[0].innerText;
+                }
+            }
+
+            if(confirm('구매상품' + '\n\n' + shopping_list + '\n\n' + '총 금액은 ' + sumPrice.toString() + '원 입니다. 구매하시겠습니까?') == true){
+                alert('구매 감사합니다!');
+                window.location.replace("http://localhost:3000/");
+            }
+            else{
+                
+            }
+        }
+
+        function initPayItem(){
+            const table = document.getElementById('payList');
+            const newrow = table.insertRow();
+
+            const priceSumCell = newrow.insertCell(0);
+            const payButtonCell = newrow.insertCell(1);
+
+            priceSumCell.innerText = sumPrice;
+            payButtonCell.innerHTML = "<button onClick=\"doPay()\">결제</button>";
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            initPayItem();
+        });
+    </script>
+
+    <div class="sidebar1" class="bg">
+        <table id="itemList" boarder="1">
+            <th style="font-size: 20px;">이름</th>
+            <th style="font-size: 20px;">가격</th>
+            <th style="font-size: 20px;">개수</th>
+            <th style="font-size: 20px;">제어</th>
+        </table>
+        <br/><br/><br/>
+        <table id="payList" boarder="1">
+            <th style="font-size: 20px;">총 금액</th>
+            <th style="font-size: 20px;">구매</th>
+        </table>
+    </div>
+
+    <div class="bg">
+        <table style="margin-left: 430px;">
+            <!-- <th>이름</th>
+            <th>이미지</th>
+            <th>가격</th>
+            <th>제어</th> -->
+        <% 
+            for (var i = 0; i < rows.length; i++) {
+        %>
+                    <tr class="list">
+                        <td name="image" value="../images/<%= rows[i].image %>"><img src="../images/<%= rows[i].image %>" style="width: 170px; height:170px;"></td>
+                        <td name="itemName" style="font-size: 25px;"><%= rows[i].itemName %></td>
+                        <td name="price" style="font-size: 25px;" value="<%= rows[i].price %>"><%= rows[i].price %></td>
+                        <td>
+                            <button class="btn" onclick="addItemList('<%= rows[i].itemName%>', '<%= rows[i].price %>')">장바구니에 담기</button>
+                        </td>
+                    </tr>
+        <%
+            }
+        %>
+        </table>
+    </div>
+    
+</body>
+</html>
